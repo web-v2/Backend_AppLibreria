@@ -7,6 +7,7 @@ const errorHandler = require('./middlewere/error');
 const connectDataBase = require('./config/db');
 const libros = require('./rutas/libro');
 const autor = require('./rutas/autor');
+const usuario = require('./rutas/usuario');
 
 dotenv.config({path: './config/config.env'});
 connectDataBase();
@@ -23,6 +24,7 @@ if(process.env.NODE_ENV === 'development'){
 
 app.use('/api/LibreriaAutor', autor);
 app.use('/api/libro', libros);
+app.use('/usuario', usuario);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000
