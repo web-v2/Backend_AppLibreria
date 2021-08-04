@@ -1,40 +1,40 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const UsuarioSchema = new mongoose.Schema({
-    nombre: {
+    nombres: {
         type: String,
-        required: [true, 'Por favor ingrese el nombre']
+        required: [true, "Por favor ingrese un nombre"],
     },
-    apellido: {
+    apellidos: {
         type: String,
-        required: [true, 'Por favor ingrese el apellido']
+        required: [true, "Por favor ingrese el apellido"],
     },
     userName: {
         type: String,
-        required: [true, 'Por favor ingrese un userName']
+        required: [true, "Por favor ingrese un username"],
     },
     email: {
         type: String,
-        required: [true, 'Por favor ingrese un email'],
+        required: [true, "Por favor ingrese un email"],
         unique: true,
         match: [
-            /^([\w\-\.]+)@((\[([0-9]{1,3}\.){3}[0-9]{1,3}\])|(([\w\-]+\.)+)([a-zA-Z]{2,4}))$/,
-            'Ingrese un email valido'
-        ]
+            /^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/,
+            "Ingrese un email valido",
+        ],
     },
     password: {
         type: String,
-        required: [true, 'Por favor ingrese un password'],
+        required: [true, "Por favor ingrese un password"],
         minlength: 6,
-        select: false
-    }
-
+        select: false,
+    },
 });
 
 UsuarioSchema.pre("save", async function (next) {
     const salt = await bcrypt.genSalt(10);
+
     this.password = await bcrypt.hash(this.password, salt);
 });
 
@@ -48,4 +48,4 @@ UsuarioSchema.methods.validarPassword = async function (passwordUsuario) {
     return await bcrypt.compare(passwordUsuario, this.password);
 };
 
-module.exports = mongoose.model('Usuario', UsuarioSchema);
+module.exports = mongoose.model("Usuario", UsuarioSchema);

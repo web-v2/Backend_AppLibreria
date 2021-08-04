@@ -1,13 +1,13 @@
-const ErrorResponse = require('../helper/errorResponse');
-const Usuario = require('../models/Usuario');
+const Usuario = require("../models/Usuario");
+const ErrorResponse = require("../helper/errorResponse");
 
 exports.registrarUsuario = async (req, res, next) => {
     try {
-        const { nombre, apellido, username, email, password } = req.body;
+        const { nombres, apellidos, userName, email, password } = req.body;
         const usrBD = await Usuario.create({
-            nombre,
-            apellido,
-            userName: username,
+            nombres,
+            apellidos,
+            userName: userName,
             email,
             password,
         });
@@ -15,9 +15,9 @@ exports.registrarUsuario = async (req, res, next) => {
         res.status(200).json({
             status: 200,
             id: usrBD._id,
-            nombre,
-            apellido,
-            username,
+            nombres,
+            apellidos,
+            userName,
             email,
             token,
         });
@@ -38,18 +38,18 @@ exports.login = async (req, res, next) => {
                 new ErrorResponse("El usuario no existe en la base de datos", 400)
             );
         }
+
         const valorBool = await usuarioBD.validarPassword(password);
         if (!valorBool) {
             return next(new ErrorResponse("Las credenciales son incorrectas", 400));
         }
-
         const token = usuarioBD.crearJsonWebToken();
         res.status(200).json({
             status: 200,
             id: usuarioBD._id,
-            nombre: usuarioBD.nombre,
-            apellido: usuarioBD.apellido,
-            username: usuarioBD.userName,
+            nombres: usuarioBD.nombres,
+            apellidos: usuarioBD.apellidos,
+            userName: usuarioBD.userName,
             email: usuarioBD.email,
             token,
         });
@@ -65,9 +65,9 @@ exports.getUsuario = async (req, res, next) => {
         res.status(200).json({
             status: 200,
             id: usuarioToken._id,
-            nombre: usuarioToken.nombre,
-            apellido: usuarioToken.apellido,
-            username: usuarioToken.userName,
+            nombres: usuarioToken.nombres,
+            apellidos: usuarioToken.apellidos,
+            userName: usuarioToken.userName,
             email: usuarioToken.email,
             token,
         });
