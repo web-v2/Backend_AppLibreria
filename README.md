@@ -1,4 +1,4 @@
-﻿<image src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/nodejs-colored.svg" alt="Descripción de la imagen" width="300" height="300">
+<a href="https://nodejs.org/en/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/nodejs-colored.svg" width="300" height="300" alt="NodeJS" /></a>
 
 # Backend de la App Libreria 
 
