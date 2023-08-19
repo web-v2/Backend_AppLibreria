@@ -1,4 +1,4 @@
-﻿<image src="[https://thinkotb.b-cdn.net/wp-content/uploads/2023/01/c-4.svg](https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/nodejs-colored.svg)" alt="Descripción de la imagen" width="300" height="300">
+﻿<image src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/nodejs-colored.svg" alt="Descripción de la imagen" width="300" height="300">
 
 # Backend de la App Libreria 
 
